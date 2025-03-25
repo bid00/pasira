@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth</title>
+
+    <!-- Tailwind Css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script></script>
+    <link src="./css/style.css"></link>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-ground">
+    <header>
+      <div
+        class="container mx-auto flex justify-between items-center py-4 px-6 xl:px-24 font-serif"
+      >
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img src="./assets/logo.svg" alt="Logo" />
+        </div>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex space-x-6">
+          <a
+            href="#"
+            class="text-mainColor text-lg font-bold transtion-all duration-300"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="hover:text-mainColor text-secondColor text-lg font-bold transtion-all duration-300"
+            >About Us</a
+          >
+          <a
+            href="#"
+            class="hover:text-mainColor text-secondColor text-lg font-bold transtion-all duration-300"
+            >Contact Us</a
+          >
+        </nav>
+
+        <!-- Icons -->
+        <div class="flex items-center gap-8">
+          <button class="stroke-secondColor">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 32 33"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M28 28.5L20 20.5M4 13.8333C4 15.059 4.24141 16.2727 4.71046 17.405C5.1795 18.5374 5.86699 19.5663 6.73367 20.433C7.60035 21.2997 8.62925 21.9872 9.76162 22.4562C10.894 22.9253 12.1077 23.1667 13.3333 23.1667C14.559 23.1667 15.7727 22.9253 16.905 22.4562C18.0374 21.9872 19.0663 21.2997 19.933 20.433C20.7997 19.5663 21.4872 18.5374 21.9562 17.405C22.4253 16.2727 22.6667 15.059 22.6667 13.8333C22.6667 12.6077 22.4253 11.394 21.9562 10.2616C21.4872 9.12925 20.7997 8.10035 19.933 7.23367C19.0663 6.36699 18.0374 5.6795 16.905 5.21046C15.7727 4.74141 14.559 4.5 13.3333 4.5C12.1077 4.5 10.894 4.74141 9.76162 5.21046C8.62925 5.6795 7.60035 6.36699 6.73367 7.23367C5.86699 8.10035 5.1795 9.12925 4.71046 10.2616C4.24141 11.394 4 12.6077 4 13.8333Z"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="relative fill-secondColor">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 29 30"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.6797 0C18.464 0 21.5901 2.88343 21.9755 6.57123L22.0831 6.5725C24.1823 6.5725 26.7347 7.96668 27.5961 11.8771L28.7384 20.7185C29.1481 23.572 28.6356 25.8609 27.2125 27.5026C25.7966 29.1357 23.5555 30 20.7309 30H8.64508C5.54255 30 3.38106 29.2399 2.03609 27.6778C0.685343 26.1113 0.233645 23.7616 0.69403 20.6953L1.81748 11.9712C2.55584 7.97103 5.25589 6.5725 7.34645 6.5725C7.52692 4.90827 8.27734 3.32505 9.46784 2.13833C10.836 0.77889 12.7224 0 14.6493 0H14.6797ZM22.0831 8.74412H7.34645C6.70799 8.74412 4.574 9.00182 3.9616 12.3085L2.84394 20.995C2.48055 23.4316 2.76142 25.1949 3.68074 26.2619C4.58848 27.3159 6.21286 27.8284 8.64508 27.8284H20.7309C22.2481 27.8284 24.3199 27.5258 25.5707 26.0809C26.5639 24.9358 26.9056 23.2303 26.5871 21.0109L25.4593 12.2491C24.9786 10.0905 23.7104 8.74412 22.0831 8.74412ZM18.9021 12.7748C19.5015 12.7748 20.0212 13.2613 20.0212 13.8606C20.0212 14.46 19.5681 14.9464 18.9687 14.9464H18.9021C18.3027 14.9464 17.8163 14.46 17.8163 13.8606C17.8163 13.2613 18.3027 12.7748 18.9021 12.7748ZM10.4616 12.7748C11.0609 12.7748 11.5807 13.2613 11.5807 13.8606C11.5807 14.46 11.1261 14.9464 10.5267 14.9464H10.4616C9.8622 14.9464 9.37576 14.46 9.37576 13.8606C9.37576 13.2613 9.8622 12.7748 10.4616 12.7748ZM14.6754 2.17163H14.6537C13.2913 2.17163 11.9638 2.72032 11.001 3.67729C10.2168 4.45801 9.70385 5.48436 9.53792 6.57182L19.787 6.57223C19.4149 4.08465 17.2638 2.17163 14.6754 2.17163Z"
+              />
+            </svg>
+
+            <span
+              class="absolute -top-1 -left-3 bg-mainColor text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+              >6</span
+            >
+          </button>
+          <button class="stroke-secondColor">
+            <svg
+              width="33"
+              height="33"
+              viewBox="0 0 41 41"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.54102 30.5C7.54102 28.7319 8.24339 27.0362 9.49364 25.786C10.7439 24.5357 12.4396 23.8333 14.2077 23.8333H27.541C29.3091 23.8333 31.0048 24.5357 32.2551 25.786C33.5053 27.0362 34.2077 28.7319 34.2077 30.5C34.2077 31.3841 33.8565 32.2319 33.2314 32.857C32.6063 33.4822 31.7584 33.8333 30.8744 33.8333H10.8743C9.99029 33.8333 9.14245 33.4822 8.51733 32.857C7.8922 32.2319 7.54102 31.3841 7.54102 30.5Z"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M20.875 17.1667C23.6364 17.1667 25.875 14.9281 25.875 12.1667C25.875 9.40525 23.6364 7.16667 20.875 7.16667C18.1136 7.16667 15.875 9.40525 15.875 12.1667C15.875 14.9281 18.1136 17.1667 20.875 17.1667Z"
+                stroke-width="2"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden grid">
+          <button id="menu-toggle" class="hover:text-gray-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.5 6h15M4.5 12h15m-15 6h15"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav id="mobile-menu" class="hidden md:hidden">
+        <div
+          class="container mx-auto flex justify-between items-center py-4 px-6 xl:px-24"
+        >
+          <div class="flex flex-col gap-4 py-4">
+            <a
+              href="#"
+              class="text-mainColor text-lg font-bold transtion-all duration-300"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="hover:text-mainColor text-secondColor text-lg font-bold transtion-all duration-300"
+              >About Us</a
+            >
+            <a
+              href="#"
+              class="hover:text-mainColor text-secondColor text-lg font-bold transtion-all duration-300"
+              >Contact Us</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Login In && Sign Up -->
+    <div class="mt-20">
+      <div
+        class="container mx-auto flex justify-between items-center py-4 px-6 xl:px-24"
+      >
+        <div class="w-full">
+          <!-- Tabs -->
+          <div class="flex mb-6 text-mainText">
+            <button
+              id="login-tab"
+              class="w-1/2 py-4 text-center text-xl font-bold border-b-2 border-mainText"
+              onclick="showLogin()"
+            >
+              Log in
+            </button>
+            <button
+              id="create-tab"
+              class="w-1/2 py-4 text-center text-xl text-mainColor border-b-2 border-mainColor font-bold"
+              onclick="showCreateAccount()"
+            >
+              Create Account
+            </button>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form" class="hidden">
+            <div class="mb-4">
+              <input
+                type="email"
+                id="login-email"
+                class="mt-1 block w-full px-4 py-3 border border-transparent rounded shadow-sm focus:outline-none focus:border-blue-500"
+                placeholder="Email"
+                name="login-email"
+                autocomplete="email"
+              />
+            </div>
+            <div class="mb-4">
+              <input
+                type="password"
+                id="login-password"
+                class="mt-1 block w-full px-4 py-3 border border-transparent rounded shadow-sm focus:outline-none focus:border-blue-500"
+                placeholder="Password"
+                name="login-password"
+              />
+            </div>
+
+            <button class="text-mainColorHove font-medium block w-fit ml-auto">
+              Forget password?
+            </button>
+
+            <div class="pt-10">
+              <button
+                type="submit"
+                class="w-full max-w-[630px] h-12 mx-auto block bg-mainColor text-white py-2 px-4 rounded focus:ring-4 focus:ring-blue-300"
+              >
+                Login
+              </button>
+            </div>
+
+            <div
+              class="flex flex-col items-center mt-8 w-[565px] mx-auto mb-6 pt-10"
+            >
+              <!-- Divider with text -->
+              <div class="flex items-center w-full">
+                <hr class="flex-grow border-secondColor" />
+                <span class="mx-4 text-secondColor text-lg">Or Login with</span>
+                <hr class="flex-grow border-secondColor" />
+              </div>
+
+              <!-- Google button -->
+              <button
+                class="flex items-center justify-center w-full max-w-sm h-12 mt-6 py-2 px-4 border border-gray-300 rounded shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                id="loginWithGoogle"
+              >
+                <img
+                  src="./assets/icon-Google.png"
+                  alt="Google logo"
+                  class="max-w-6 max-h-6 mr-2"
+                />
+                <span>Login with Google</span>
+              </button>
+
+              <!-- Login link -->
+              <p class="mt-6 text-secondColor text-sm">
+                Don’t have an account?
+                <a
+                  href="#"
+                  class="text-mainColor border-b-2 border-mainColor text-base"
+                  >Sign up</a
+                >
+              </p>
+            </div>
+          </form>
+
+          <!-- Create Account Form -->
+          <form id="create-account-form" class="space-y-4">
+            <div>
+              <input
+                type="text"
+                id="register-name"
+                class="mt-1 block w-full px-4 py-3 border border-transparent rounded shadow-sm focus:outline-none focus:border-blue-500"
+                placeholder="Full Name"
+                autocomplete="name"
+                name="name"
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                id="register-email"
+                class="mt-1 block w-full px-4 py-3 border border-transparent rounded shadow-sm focus:outline-none focus:border-blue-500"
+                placeholder="E-mail"
+                name="email"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                id="register-phone"
+                class="mt-1 block w-full px-4 py-3 border border-transparent rounded shadow-sm focus:outline-none focus:border-blue-500"
+                placeholder="Phone Number"
+                name="phone"
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                id="register-password"
+                class="mt-1 block w-full px-4 py-3 border border-transparent rounded shadow-sm focus:outline-none focus:border-blue-500"
+                placeholder="Password"
+                name="password"
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                id="confirm-password"
+                class="mt-1 block w-full px-4 py-3 border border-transparent rounded shadow-sm focus:outline-none focus:border-blue-500"
+                placeholder="Confirm password"
+              />
+            </div>
+
+            <div class="pt-10">
+              <button
+                type="submit"
+                class="w-full max-w-[630px] h-12 mx-auto block bg-mainColor text-white py-2 px-4 rounded focus:ring-4 focus:ring-blue-300"
+              >
+                Register
+              </button>
+            </div>
+
+            <div
+              class="flex flex-col items-center mt-8 w-[565px] mx-auto mb-6 pt-10"
+            >
+              <!-- Divider with text -->
+              <div class="flex items-center w-full">
+                <hr class="flex-grow border-secondColor" />
+                <span class="mx-4 text-secondColor text-lg"
+                  >Or Sign up with</span
+                >
+                <hr class="flex-grow border-secondColor" />
+              </div>
+
+              <!-- Google button -->
+              <button
+                class="flex items-center justify-center w-full max-w-sm h-12 mt-6 py-2 px-4 border border-gray-300 rounded shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="loginWithGoogle"
+              >
+                <img
+                  src="./assets/icon-Google.png"
+                  alt="Google logo"
+                  class="max-w-6 max-h-6 mr-2"
+                />
+                <span>Sign up with Google</span>
+              </button>
+
+              <!-- Login link -->
+              <p class="mt-6 text-secondColor text-sm">
+                Already have an account?
+                <a
+                  href="#"
+                  class="text-mainColor border-b-2 border-mainColor text-base"
+                  >LOGIN</a
+                >
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="popover" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-lg hidden">
+      <span id="popover-message"></span>
+      <button id="popover-close" class="ml-4 text-red-400 font-bold">X</button>
+  </div>
+
+    <script src="./scripts/auth.js"></script>
+    <script src="./scripts/global.js"></script>
+  </body>
+</html>

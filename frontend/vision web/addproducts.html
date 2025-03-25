@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="./css/addproducts.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Add a New Product</h2>
+        
+        <form id="productForm">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="price">Price ($):</label>
+            <input type="number" id="price" name="price" required>
+
+            <label for="picture">Product Image:</label>
+            <input type="file" id="picture" name="picture" accept="image/*" required>
+
+            <img id="previewImage" src="" alt="Image Preview" style="display: none;">
+
+            <button type="submit">Add Product</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById("picture").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("previewImage").src = e.target.result;
+            document.getElementById("previewImage").style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+document.getElementById("productForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", document.getElementById("name").value);
+    formData.append("price", document.getElementById("price").value);
+    formData.append("picture", document.getElementById("picture").files[0]);
+
+    try {
+        const response = await fetch("http://localhost:8000/api/products/add", {
+            method: "POST",
+            body: formData,
+        });
+
+        const result = await response.json();
+        document.getElementById("message").textContent = result.message || "Product added successfully!";
+        document.getElementById("message").style.color = "green";
+    } catch (error) {
+        console.error("Error:", error);
+        document.getElementById("message").textContent = "Error adding product.";
+        document.getElementById("message").style.color = "red";
+    }
+});
+
+    </script>
+</body>
+</html>
