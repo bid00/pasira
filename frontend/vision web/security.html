@@ -272,7 +272,7 @@
     
                   <span> Security and policy </span>
                 </a>
-                <a class="flex items-center font-medium gap-4 text-error" href="#">
+                <a id="logout" class="flex items-center font-medium gap-4 text-error" href="#">
                   <svg
                     width="20"
                     height="20"
@@ -314,7 +314,10 @@
                     <button type="submit" class="submit-btn">Change Password</button>
                 </form>
             </div>
-            
+            <div id="popover" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-lg hidden">
+              <span id="popover-message"></span>
+              <button id="popover-close" class="ml-4 text-red-400 font-bold">X</button>
+            </div>
     
       </main>
   

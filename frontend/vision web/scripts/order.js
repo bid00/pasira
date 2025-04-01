@@ -2,12 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const apiUrl = "http://localhost:8000/api/orders/";
   const accessToken = localStorage.getItem("accessToken");
   const name = document.querySelector("#name");
-  if (!accessToken) {
-    alert("Access token not found. Please log in.");
-    window.location.href= "./auth.html"
-    return;
-  }
+  const popover = document.getElementById("popover");
+    const popoverMessage = document.getElementById("popover-message");
+    const popoverClose = document.getElementById("popover-close");    
+    const showPopover = (message, success = true) => {
+        popoverMessage.textContent = message;
+        popover.classList.add(success ? "success" : "error");
+        popover.style.display = "block";
+     };
 
+    popoverClose.addEventListener("click", () => {
+        popover.style.display = "none";
+        popover.classList.remove("success", "error");
+    });
   const headers = {
     "Content-Type": "application/json",
     Authorization: `${accessToken}`,
@@ -16,7 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const tableBody = document.querySelector("tbody");
   //@desc get the username
   fetch("http://localhost:8000/api/user/getprofile", { headers })
-  .then((response) => response.json())
+  .then((response) =>{
+    if (response.status === 401) {
+      response.json().then((data)=>{showPopover(data.message + " please login again!",false);})
+      setTimeout(()=>window.location.href="./auth.html",2000);
+      return;
+    }
+    return response.json()
+  })
   .then((data) => {
     name.innerHTML = data.fullName || "";
   }).catch((error) => console.error("Error fetching profile:", error));
@@ -29,9 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
         tableBody.innerHTML = "<tr><td colspan='4' class='p-4 text-center'>No orders yet.</td></tr>";
         return;
       }
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      if (response.status === 401) {
+        const message = await response.json();
+        showPopover(message.message + " please login again!",false);
+        setTimeout(()=>window.location.href="./auth.html",2000);
+        return;
       }
   
       const data = await response.json();

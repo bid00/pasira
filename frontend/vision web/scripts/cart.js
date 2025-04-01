@@ -1,9 +1,19 @@
     document.addEventListener("DOMContentLoaded", async () => {
+
+    const popover = document.getElementById("popover");
+    const popoverMessage = document.getElementById("popover-message");
+    const popoverClose = document.getElementById("popover-close");    
+    const showPopover = (message, success = true) => {
+        popoverMessage.textContent = message;
+        popover.classList.add(success ? "success" : "error");
+        popover.style.display = "block";
+     };
+
+    popoverClose.addEventListener("click", () => {
+        popover.style.display = "none";
+        popover.classList.remove("success", "error");
+    });
         const token = localStorage.getItem("accessToken");
-        if (!token) {
-            window.location.href = "auth.html";
-            return;
-        }
 
         try {
             const response = await fetch("http://localhost:8000/api/cart/", {
@@ -15,7 +25,9 @@
             });
 
             if (response.status === 401) {
-                window.location.href = "login.html";
+                const message = await response.json();
+                showPopover(message.message + " please login again!",false);
+                setTimeout(()=>window.location.href="./auth.html",2000);
                 return;
             }else if (response.status === 404) {
                 document.getElementById("cart-items").innerHTML = "<p class='text-center text-gray-500 text-lg'>Your cart is empty.</p>";
@@ -81,7 +93,9 @@
             });
 
             if (response.status === 401) {
-                window.location.href = "login.html";
+                const message = await response.json();
+                showPopover(message.message + " please login again!",false);
+                setTimeout(()=>window.location.href="./auth.html",2000);
                 return;
             }
 
@@ -105,7 +119,9 @@
             });
 
             if (response.status === 401) {
-                window.location.href = "login.html";
+                const message = await response.json();
+                showPopover(message.message + " please login again!",false);
+                setTimeout(()=>window.location.href="./auth.html",2000);
                 return;
             }
 

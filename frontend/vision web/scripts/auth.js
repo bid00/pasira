@@ -51,7 +51,7 @@ const popover = document.getElementById("popover");
         showPopover(data.message, response.ok);
         showLogin();
     });
-
+    
     loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const email = document.getElementById("login-email").value;
@@ -72,25 +72,26 @@ const popover = document.getElementById("popover");
             showPopover(data.message, false);
         }
     });
+    function getCookie(name) {
+        const cookies = document.cookie.split("; ");
+        for (let cookie of cookies) {
+            const [key, value] = cookie.split("=");
+            if (key === name) return value;
+        }
+        return null;
+    }
 
-    document.getElementById("loginWithGoogle").addEventListener("click", function() {
-        const loginWindow = window.open("http://localhost:8000/api/auth/google", "_blank");
+    function loginWithGoogle() {
+        // Open Google login in a new tab
+        window.open("http://localhost:8000/api/auth/google", "_self");
 
-        // Check every 500ms if the token has been saved
-        const checkLogin = setInterval(() => {
-            const token = localStorage.getItem("accessToken");
-
-            if (token) {
-                console.log("Token retrieved:", token);
-
-                // Clear the interval
-                clearInterval(checkLogin);
-
-                // Ask the user to close the login tab manually
-                showPopover("Login successful! Redirecting...", true);
-                setTimeout(() => window.location.href = "./profile.html", 2000);
-            }else {
-                showPopover("couldn't login with google", false);
-            }
-        }, 500);
+    };
+    document.addEventListener("DOMContentLoaded", function() {
+        const token = getCookie("accessToken");
+        localStorage.setItem("accessToken",token);
+        if (token) {
+            showPopover("Login successful! Redirecting...", true);
+            window.location.href = "./profile.html"
+        } 
     });
+    

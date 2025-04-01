@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { accessTokenSecret } from "../config.js";
 import { login, register } from "../controllers/authController.js";
 import passport from "passport";
-
+import cookie from "cookie";
 const router = express.Router();
 
 // Login
@@ -17,26 +17,13 @@ router.get('/google', passport.authenticate("google", { scope: ["profile", "emai
 //@desc google callback
 router.get('/google/callback',passport.authenticate("google",{session:false}),(req,res)=>{
     const token = req.user.token;
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Login Successful</title>
-        </head>
-        <body>
-            <h2 id="message">Processing login...</h2>
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    localStorage.setItem("accessToken", "${token}");
-                    document.getElementById("message").innerText = "Login successful! You can close this tab.";
-                });
-            </script>
-        </body>
-        </html>
-    `);
-
+    res.setHeader('Set-Cookie', cookie.serialize('accessToken', token, {
+        httpOnly: false,  // Set to true in production (prevents JavaScript access)
+        secure: false,    // Set to true if using HTTPS
+        sameSite: "lax",  // Controls cross-origin behavior
+        path: "/"
+    }));
+    res.redirect("http://localhost:5500/auth.html");
 });
 
 

@@ -2,12 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const apiUrl = "http://localhost:8000/api/user/getprofile";
   const accessToken = localStorage.getItem("accessToken");
 
-  if (!accessToken) {
-    alert("Access token not found. Please log in.");
-    window.location.href = './auth.html'
-    return;
-  }
-
   const headers = {
     Authorization: `${accessToken}`,
   };
@@ -19,7 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const profilePicDiv = document.querySelector("#profilepic"); 
   const uploadButton = profilePicDiv.nextElementSibling;
   const name = document.querySelector("#name");
+  
+  const popover = document.getElementById("popover");
+  const popoverMessage = document.getElementById("popover-message");
+  const popoverClose = document.getElementById("popover-close");
 
+  const showPopover = (message, success = true) => {
+    popoverMessage.textContent = message;
+    popover.classList.add(success ? "success" : "error");
+    popover.style.display = "block";
+  };
+
+  popoverClose.addEventListener("click", () => {
+    popover.style.display = "none";
+    popover.classList.remove("success", "error");
+  });
   editButton.textContent = "Edit";
   editButton.classList.add("w-full","max-w-[365px]", "mx-auto", "bg-mainColor", "block", "text-white", "p-4", "rounded-lg");
 
@@ -33,7 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch and populate user data
   fetch(apiUrl, { headers })
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status === 401) {
+        response.json().then((data)=>{showPopover(data.message + " please login again!",false);})
+        setTimeout(()=>window.location.href="./auth.html",2000);
+        return;
+      }
+      return response.json()})
     .then((data) => {
       inputs[0].value = data.fullName || "";
       inputs[1].value = data.phone || "";
@@ -114,9 +128,4 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => console.error("Error updating profile:", error));
   });
 
-  const logout = document.getElementById("logout");
-  logout.addEventListener("click",()=>{
-    localStorage.removeItem("accessToken");
-    window.location.href="./auth.html";
-  })
 });
